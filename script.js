@@ -8,10 +8,14 @@ let tasks = [];
 const priorityPattern = /^[0-9]*$/;
 const taskNamePattern = /[a-zA-Z0-9]/;
 // update row in table
-function updateRow(table, id, taskName, priority) {
-  const rowToUpdate = table.rows[id];
-  rowToUpdate.cells[1].innerHTML = taskName;
-  rowToUpdate.cells[2].innerHTML = priority;
+function updateRow(table, id, tasks) {
+  for (const todo of tasks) {
+    if (todo.id === id) {
+      const rowToUpdate = table.rows[id];
+      rowToUpdate.cells[1].innerHTML = todo.taskName;
+      rowToUpdate.cells[2].innerHTML = todo.priority;
+    }
+  }
 }
 
 // Remove a todo from the table.
@@ -54,10 +58,10 @@ function validateInput(taskName, priority, add) {
       break;
     case false:
       if (
-        taskName.trim() &&
-        priorityPattern.test(priority) &&
-        taskNamePattern.test(taskName) &&
-        (taskName.length > 0 || (priority.length > 0 && parseInt(priority) > 0))
+        (taskName.length > 0 && taskNamePattern.test(taskName) ) ||
+        (priorityPattern.test(priority) &&
+          priority.length > 0 &&
+          parseInt(priority) > 0)
       ) {
         return true;
       }
@@ -93,7 +97,7 @@ function createEventListner(element) {
           tasks = editTodo(id, newTaskNameValue, intNewPriority, tasks);
           newTaskName.value = "";
           newPriority.value = "";
-          updateRow(table, id, newTaskNameValue, intNewPriority);
+          updateRow(table, id, tasks);
         } else {
           alert("Invalid priority/task name");
         }

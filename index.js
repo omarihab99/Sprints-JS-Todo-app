@@ -45,7 +45,7 @@ export function removeTodoFromList(id, list) {
 } 
 
 // Edit a todo.
-export function editTodo(id, taskName=undefined, priority=undefined, list) {
+export function editTodo(id, taskName, priority, list) {
     for(let todo of list){
         if(todo.id === id){
             todo.taskName = taskName ? taskName : todo.taskName;
