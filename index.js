@@ -69,27 +69,3 @@ export function editTodo(id, taskName, priority, list) {
 //     list = removeTodoFromList(1, list);
 //     console.log(list);
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// TODO: Add eventListner on Add button to call createTodo() function with arguments:
-// id, taskName, priority.
-// add the object to array.
-// create instance of ProrityQueue and enqueue the object.
