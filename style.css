@@ -13,3 +13,6 @@ body{
 .add-btn-div{
     margin: auto;
 }
+a{
+    text-decoration: none;
+}

@@ -79,14 +79,7 @@ const handelAddButton = (list, ID) => {
   }
 };
 
-const sortTable = (list) => {
-  const tableBody = document.getElementById("tasksList");
-  tableBody.innerHTML = "";
-  for (const todo of list) {
-    const row = createTodoItem(todo.taskName, todo.priority, list, todo.id);
-    tableBody.appendChild(row);
-  }
-};
+
 
 const handleSendButton = (list) => {
   const rowToEdit = document.getElementById(localStorage.getItem("taskID"));
@@ -108,17 +101,47 @@ const handleSendButton = (list) => {
   }
 };
 
+const sortTableByTaskName = (list) => {
+  const listSortedTaskName = list.sort((a, b) => {
+    return a.taskName.localeCompare(b.taskName);
+  });
+  const tableBody = document.getElementById("tasksList");
+  tableBody.innerHTML = "";
+  for (const todo of listSortedTaskName) {
+    const row = createTodoItem(todo.taskName, todo.priority, listSortedTaskName, todo.id);
+    tableBody.appendChild(row);
+  }
+};
+
+const sortTableByPriority = (list) => {
+  const listSortedPriority = list.sort((a, b) => {
+    return a.priority - b.priority;
+  });
+  const tableBody = document.getElementById("tasksList");
+  tableBody.innerHTML = "";
+  for (const todo of listSortedPriority) {
+    const row = createTodoItem(todo.taskName, todo.priority, listSortedPriority, todo.id);
+    tableBody.appendChild(row);
+  }
+};
+
 const listOfTodos = new Array();
 const addButton = document.getElementById("add");
-const sortButton = document.getElementById("sort");
 const sendButton = document.getElementById("sendButton");
+const taskNameCol = document.getElementById("taskNameCol");
+const priorityCol = document.getElementById("priorityCol");
 let ID = 0;
 addButton.addEventListener("click", function () {
   handelAddButton(listOfTodos, ++ID);
 });
-sortButton.addEventListener("click", function () {
-  sortTable(listOfTodos);
-});
+
+
 sendButton.addEventListener("click", function () {
   handleSendButton(listOfTodos);
+});
+taskNameCol.addEventListener("click", function () {
+  sortTableByTaskName(listOfTodos);
+});
+priorityCol.addEventListener("click", function () {
+  sortTableByPriority(listOfTodos);
 });
