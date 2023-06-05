@@ -1,38 +1,37 @@
 "use strict";
 
 export class Task {
-  _taskName;
-  _priority;
-  _ID;
-  _status = "pending";
+  #taskName;
+  #priority;
+  #ID;
+  #status = "pending";
   constructor(taskName, priority, ID) {
-    this.taskName = taskName;
-    this.priority = priority;
-    this._ID = ID;
+    this.#taskName = taskName;
+    this.#priority = priority;
+    this.#ID = ID;
   }
   get status() {
-    return this._status;
+    return this.#status;
   }
   set status(status) {
-    this._status = status;
+    this.#status = status;
   }
   get taskName() {
-    return this._taskName;
+    return this.#taskName;
   }
   set taskName(taskName) {
-    this._taskName = taskName;
+    this.#taskName = taskName;
   }
   get priority() {
-    return this._priority;
+    return this.#priority;
   }
   set priority(priority) {
-    this._priority = priority;
+    this.#priority = priority;
   }
   get ID() {
-    return this._ID;
+    return this.#ID;
   }
   set ID(ID) {
-    this._ID = ID;
-  }
-  
+    this.#ID = ID;
+  } 
 }
