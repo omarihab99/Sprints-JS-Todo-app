@@ -16,3 +16,9 @@ body{
 a{
     text-decoration: none;
 }
+table button{
+    margin: 0 2%;
+}
+#clear{
+    margin: 2% 0%;
+}
